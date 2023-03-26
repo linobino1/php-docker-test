@@ -14,4 +14,9 @@ fclose($file);
 echo "Write to file success!<br>";
 echo file_get_contents("dir/test.txt");
 
+# test write read-only file
+if (@fopen("test.txt", "w") === false) {
+    echo "<br>Write to read-only file failed! It should.<br>";
+}
+
 ?>
