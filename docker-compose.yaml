@@ -6,9 +6,9 @@ services:
     # working_dir: /app
     expose:
       - 80
-    # volumes:
+    volumes:
     #   - ./:/app:ro
-    #   - ./dir:/app/dir:rw
+      - ./dir:/app/dir:rw
     env_file:
       - .env
     labels:
