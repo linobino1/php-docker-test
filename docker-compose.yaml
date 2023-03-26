@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    expose:
+      - 80
+    volumes:
+      - .:/var/www/html/:ro
+    env_file:
+      - .env
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.app.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.app.entrypoints=web
+  
+  traefik:
+    image: traefik
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+volumes:
+  log:
