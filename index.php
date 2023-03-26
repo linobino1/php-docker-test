@@ -4,8 +4,12 @@ echo "Hello World!<br>";
 
 # test read
 $file = fopen("dir/test.txt", "r");
-echo fread($file, filesize("dir/test.txt"));
-fclose($file);
+if ($file === false) {
+    echo "Read file failed!<br>";
+} else {
+    echo fread($file, filesize("dir/test.txt"));
+    fclose($file);
+}
 
 # test write
 $file = fopen("dir/test.txt", "a+");
