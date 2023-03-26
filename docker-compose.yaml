@@ -2,13 +2,16 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    image: webdevops/php-nginx
+    working_dir: /app
     expose:
       - 80
     volumes:
-      - .:/var/www/html/:ro
+      - ./:/app:rw,cached
     env_file:
       - .env
+    environment:
+      - WEB_DOCUMENT_ROOT=/app
     labels:
       - traefik.enable=true
       - traefik.http.routers.app.rule=Host(`${DOMAIN}`)
@@ -26,6 +29,3 @@ services:
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-
-volumes:
-  log:
