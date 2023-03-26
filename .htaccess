@@ -1,55 +1,5 @@
-ErrorDocument 400 "Error 400 - Bad Request"
-ErrorDocument 401 "Error 401 - Authentication required"
-ErrorDocument 403 "Error 403 - Permission denied"
-ErrorDocument 404 "Error 404 - Not Found"
-ErrorDocument 500 "Error 500 - Internal Server Error"
-
-Options -Indexes
-
 RewriteEngine On
 
-# redirect theme URLs
-RewriteRule ^theme/(.*)$ /themes/%{ENV:THEME}/$1 [L,QSA]
-
-# redirect everything else to index.php
-RewriteCond %{REQUEST_URI} !^/themes/(.*)$
+# redirect * to index.php
 RewriteCond %{REQUEST_URI} !^/index.php(.*)$
 RewriteRule ^(.*)$ /index.php [L,QSA]
-
-# Caching
-ExpiresActive On
-# img
-ExpiresByType image/x-icon "access plus 14 days"
-ExpiresByType image/png "access plus 14 days"
-ExpiresByType image/gif "access plus 14 days"
-ExpiresByType image/jpeg "access plus 14 days"
-ExpiresByType image/svg+xml "access plus 14 days"
-# css/js
-ExpiresByType text/css "access plus 2 days"
-ExpiresByType text/javascript "access plus 2 days"
-ExpiresByType text/x-javascript "access plus 2 days"
-ExpiresByType application/javascript "access plus 2 days"
-ExpiresByType application/x-javascript "access plus 2 days"
-# fonts
-ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
-ExpiresByType application/x-font-ttf "access plus 1 year"
-ExpiresByType application/font-sfnt "access plus 1 year"
-ExpiresByType application/x-font-opentype "access plus 1 year"
-ExpiresByType application/x-font-woff "access plus 1 year"
-
-# Compression
-AddOutputFilterByType DEFLATE text/plain
-AddOutputFilterByType DEFLATE text/html 
-AddOutputFilterByType DEFLATE text/xml 
-AddOutputFilterByType DEFLATE text/css
-AddOutputFilterByType DEFLATE application/xml
-AddOutputFilterByType DEFLATE application/xhtml+xml
-AddOutputFilterByType DEFLATE application/rss+xml
-AddOutputFilterByType DEFLATE application/javascript
-AddOutputFilterByType DEFLATE application/x-javascript
-AddOutputFilterByType DEFLATE image/svg+xml
-AddOutputFilterByType DEFLATE application/font-sfnt
-AddOutputFilterByType DEFLATE application/x-font-ttf
-AddOutputFilterByType DEFLATE application/font-woff
-AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
-AddOutputFilterByType DEFLATE application/x-font-otf
