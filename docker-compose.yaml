@@ -9,7 +9,7 @@ services:
     volumes:
       - ./:/app/public:ro
       - test:/app/dir:rw
-      - data:/app/data:rw
+      - data_in:/app/data/in:rw
     env_file:
       - .env
     environment:
@@ -25,7 +25,7 @@ services:
       USERS: "${FTP_USER}|${FTP_PASS}|/app/data/in"
       ADDRESS: ${DOMAIN}
     volumes:
-      - data:/app/data
+      - data_in:/app/data
     ports:
       - 21:21
       - 21000-21010:21000-21010
@@ -46,4 +46,4 @@ services:
 
 volumes:
   test:
-  data:
+  data_in:
