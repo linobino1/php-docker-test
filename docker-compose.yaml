@@ -2,17 +2,17 @@ version: '3.8'
 
 services:
   app:
-    image: webdevops/php-nginx:8.2
+    image: webdevops/php-apache:8.2
     working_dir: /app
     expose:
       - 80
     volumes:
-      - ./:/app:ro
+      - ./:/app/public:ro
       - test:/app/dir:rw
     env_file:
       - .env
     environment:
-      WEB_DOCUMENT_ROOT: /app
+      WEB_DOCUMENT_ROOT: /app/public
     labels:
       - traefik.enable=true
       - traefik.http.routers.app.rule=Host(`${DOMAIN}`)

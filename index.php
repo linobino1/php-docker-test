@@ -3,16 +3,16 @@ ini_set('display_errors', 1);
 echo "Hello World!<br>";
 
 # test read
-$file = fopen("dir/test.txt", "r");
+$file = fopen("/app/dir/test.txt", "r");
 if ($file === false) {
     echo "Read file failed!<br>";
 } else {
-    echo fread($file, filesize("dir/test.txt"));
+    echo fread($file, filesize("/app/dir/test.txt"));
     fclose($file);
 }
 
 # test write
-$file = fopen("dir/test.txt", "a+");
+$file = fopen("/app/dir/test.txt", "a+");
 fwrite($file, "Hello World!");
 fclose($file);
 echo "Write to file success!<br>";
