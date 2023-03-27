@@ -16,7 +16,7 @@ $file = fopen("/app/dir/test.txt", "a+");
 fwrite($file, "Hello World!");
 fclose($file);
 echo "Write to file success!<br>";
-echo file_get_contents("dir/test.txt");
+echo file_get_contents("/app/dir/test.txt");
 
 # test write read-only file
 if (@fopen("test.txt", "w") === false) {
